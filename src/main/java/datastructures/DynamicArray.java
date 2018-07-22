@@ -43,7 +43,6 @@ public class DynamicArray<String> {
     // Try implementing delete, isEmpty, and Contains on your own.
     // You can find the solution at the bottom
 
-
     public void delete(int index) {
         if (index < size) {
             for (int i = index; i < size - 1; i++) {
@@ -65,7 +64,6 @@ public class DynamicArray<String> {
         }
         return false;
     }
-
 
     private void resize() {
         Object[] newData = new Object[initialCapacity * 2];
@@ -89,7 +87,6 @@ public class DynamicArray<String> {
     // Some array implementations offer methods like insert (also known as pushBack).
     // Which is like insert, only in does the insert at the end of the array.
     public void add(String value) {
-
         if (size == initialCapacity) {
             resize();
         }
@@ -119,5 +116,4 @@ public class DynamicArray<String> {
 //        }
 //        return false;
 //    }
-
 }
