@@ -12,11 +12,13 @@ public class DynamicArray<String> {
     }
 
     public String get(int index) {
-        return (String)data[index];
+        return (String) data[index];
     }
 
     public void set(int index, String value) {
-        data[index] = value;
+        if (index < initialCapacity) {
+            data[index] = value;
+        }
     }
 
     public void insert(int index, String value) {
@@ -28,7 +30,7 @@ public class DynamicArray<String> {
 
         // Copy up
         for (int j = size; j > index; j--) {
-            data[j] = data[j-1];
+            data[j] = data[j - 1];
         }
 
         // Insert
@@ -41,17 +43,29 @@ public class DynamicArray<String> {
     // Try implementing delete, isEmpty, and Contains on your own.
     // You can find the solution at the bottom
 
-    /*
+
     public void delete(int index) {
+        if (index < size) {
+            for (int i = index; i < size - 1; i++) {
+                data[i] = data[i + 1];
+            }
+            size--;
+        }
     }
 
     public boolean isEmpty() {
-
+        return size == 0;
     }
 
     public boolean Contains(String value) {
+        for (int i = 0; i < size; i++) {
+            if (data[i].toString().equals(value)) {
+                return true;
+            }
+        }
+        return false;
     }
-    */
+
 
     private void resize() {
         Object[] newData = new Object[initialCapacity * 2];
@@ -67,7 +81,7 @@ public class DynamicArray<String> {
     }
 
     public void print() {
-        for (int i=0;i< size;i++) {
+        for (int i = 0; i < size; i++) {
             System.out.println("data[i] = " + data[i]);
         }
     }
@@ -84,26 +98,26 @@ public class DynamicArray<String> {
         size++;
     }
 
-    public void delete(int index) {
-        // Copy down
-        for (int j = index; j < size - 1; j++) {
-            data[j] = data[j + 1];
-        }
-        size--;
-    }
-
-    public boolean isEmpty() {
-        return size == 0;
-    }
-
-    public boolean Contains(String value) {
-        for (int i = 0; i <= size -  1; i++) {
-            String currentValue = (String)data[i];
-            if (currentValue.equals(value)) {
-                return true;
-            }
-        }
-        return false;
-    }
+//    public void delete(int index) {
+//        // Copy down
+//        for (int j = index; j < size - 1; j++) {
+//            data[j] = data[j + 1];
+//        }
+//        size--;
+//    }
+//
+//    public boolean isEmpty() {
+//        return size == 0;
+//    }
+//
+//    public boolean Contains(String value) {
+//        for (int i = 0; i <= size -  1; i++) {
+//            String currentValue = (String)data[i];
+//            if (currentValue.equals(value)) {
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
 
 }
