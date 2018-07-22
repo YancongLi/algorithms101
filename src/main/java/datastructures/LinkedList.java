@@ -12,6 +12,7 @@ public class LinkedList {
     }
 
     public Node head;
+    private int size;
 
     public void addFront(int data) {
 
@@ -21,6 +22,7 @@ public class LinkedList {
         // if head...
         if (head == null) {
             head = newNode;
+            size++;
             return;
         }
 
@@ -29,9 +31,13 @@ public class LinkedList {
 
         // Set current head equal to this new head
         head = newNode;
+        size++;
     }
 
     public int getFirst() {
+        if (head == null) {
+            throw new IllegalStateException("Empty list!");
+        }
         return head.data;
     }
 
@@ -57,6 +63,7 @@ public class LinkedList {
         // if head... set and return
         if (head == null) {
             head = newNode;
+            size++;
             return;
         }
 
@@ -70,27 +77,29 @@ public class LinkedList {
 
         // Set current node to equal newNode
         current.next = newNode;
+        size++;
     }
 
     public int size() {
-
-        if (head == null) {
-            return 0;
-        }
-
-        int count = 1;
-        Node current = head;
-
-        while (current.next != null) {
-            current = current.next;
-            count++;
-        }
-
-        return count;
+        return size;
+//        if (head == null) {
+//            return 0;
+//        }
+//
+//        int count = 1;
+//        Node current = head;
+//
+//        while (current.next != null) {
+//            current = current.next;
+//            count++;
+//        }
+//
+//        return count;
     }
 
     public void clear() {
         head = null;
+        size = 0;
     }
 
     public void deleteValue(int data) {
@@ -101,6 +110,7 @@ public class LinkedList {
         }
         if (head.data == data) {
             head = head.next;
+            size--;
             return;
         }
 
@@ -110,6 +120,7 @@ public class LinkedList {
         while (current.next != null) {
             if (current.next.data == data) {
                 current.next = current.next.next;
+                size--;
                 return;
             }
             current = current.next;
