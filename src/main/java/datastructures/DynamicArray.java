@@ -13,9 +13,9 @@ public class DynamicArray<String> {
 
     public String get(int index) {
         return (String) data[index];
-    }
+    }//O(1)
 
-    public void set(int index, String value) {
+    public void set(int index, String value) {//O(1)
         if (index < initialCapacity) {
             data[index] = value;
         }
@@ -29,7 +29,7 @@ public class DynamicArray<String> {
         }
 
         // Copy up
-        for (int j = size; j > index; j--) {
+        for (int j = size; j > index; j--) {//O(n)
             data[j] = data[j - 1];
         }
 
@@ -45,7 +45,7 @@ public class DynamicArray<String> {
 
     public void delete(int index) {
         if (index < size) {
-            for (int i = index; i < size - 1; i++) {
+            for (int i = index; i < size - 1; i++) {//O(n)
                 data[i] = data[i + 1];
             }
             size--;
@@ -54,10 +54,10 @@ public class DynamicArray<String> {
 
     public boolean isEmpty() {
         return size == 0;
-    }
+    }//O(1)
 
     public boolean Contains(String value) {
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < size; i++) {//O(n)
             if (data[i].toString().equals(value)) {
                 return true;
             }
@@ -65,7 +65,7 @@ public class DynamicArray<String> {
         return false;
     }
 
-    private void resize() {
+    private void resize() {//O(n)
         Object[] newData = new Object[initialCapacity * 2];
         for (int i = 0; i < initialCapacity; i++) {
             newData[i] = data[i];
