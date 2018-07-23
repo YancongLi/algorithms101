@@ -10,6 +10,7 @@ public class Queue {
         }
     }
 
+    //an application of doubly linked list:
     private Node head; // remove things here
     private Node tail; // add things here
 
