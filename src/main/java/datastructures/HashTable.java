@@ -74,7 +74,7 @@ public class HashTable {
 
         // Convert to index
         int index = (hashCode & 0x7fffffff) % INITIAL_SIZE;
-//        int index = hashCode % INITIAL_SIZE;
+        //int index = hashCode % INITIAL_SIZE;
 
         System.out.println("index = " + index);
 

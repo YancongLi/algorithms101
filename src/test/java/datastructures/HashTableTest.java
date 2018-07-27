@@ -9,7 +9,7 @@ public class HashTableTest {
     private HashTable hashTable;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         hashTable = new HashTable();
     }
 
