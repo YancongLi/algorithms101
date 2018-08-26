@@ -1,8 +1,8 @@
 package algorithms;
 
-public class FibonacciNaive {
+class FibonacciNaive {
 
-    public int fib(int n) {
+    int fib(int n) {
         System.out.println("Start fib(" + n + ")");
         if (n <= 0) {
             return 0;

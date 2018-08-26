@@ -1,7 +1,5 @@
 package algorithms;
 
-import algorithms.FibonacciMemoized;
-import algorithms.FibonacciNaive;
 import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -9,16 +7,16 @@ import org.junit.Test;
 public class FibonacciTest {
 
     private FibonacciNaive naive;
-    private FibonacciMemoized memo;
+    private FibonacciMemorized memo;
 
     @Before
     public void setUp() throws Exception {
         naive = new FibonacciNaive();
-        memo = new FibonacciMemoized();
+        memo = new FibonacciMemorized();
     }
 
     @Test
-    public void Naive() throws Exception {
+    public void naive() throws Exception {
         Assert.assertEquals(0, naive.fib(0));
         Assert.assertEquals(1, naive.fib(1));
         Assert.assertEquals(1, naive.fib(2));
@@ -31,7 +29,7 @@ public class FibonacciTest {
     }
 
     @Test
-    public void Memoized() throws Exception {
+    public void memorized() throws Exception {
         Assert.assertEquals(0, memo.fib(0));
         Assert.assertEquals(1, memo.fib(1));
         Assert.assertEquals(1, memo.fib(2));
@@ -44,21 +42,21 @@ public class FibonacciTest {
     }
 
     @Test
-    public void RecordTimeNaive() throws Exception {
+    public void recordTimeNaive() throws Exception {
         long startTime = System.currentTimeMillis();
         naive.fib(30);
         long endTime = System.currentTimeMillis();
         long elapsedTime = (endTime - startTime) / 1000;
-        System.out.println("elapsedTime = " + elapsedTime); // 19s
+        System.out.println("elapsedTime = " + elapsedTime); // 15s
     }
 
     @Test
-    public void RecordTimeMemoized() throws Exception {
+    public void recordTimeMemorized() throws Exception {
         long startTime = System.currentTimeMillis();
-        memo.fib(1000);
+        memo.fib(10000);
         long endTime = System.currentTimeMillis();
         long elapsedTime = (endTime - startTime) / 1000;
-        System.out.println("elapsedTime = " + elapsedTime); // 20s
+        System.out.println("elapsedTime = " + elapsedTime); // less than 1 second
     }
 
 }
