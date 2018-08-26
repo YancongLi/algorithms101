@@ -3,10 +3,10 @@ package algorithms;
 import java.util.Arrays;
 
 public class MinIntHeap {
-    private int capactity = 10;
+    private int capacity = 10;
     private int size = 0;
 
-    public int[] items = new int[capactity];
+    public int[] items = new int[capacity];
 
     private int leftChildIndex(int parentIndex) { return 2 * parentIndex + 1; }
     private int rightChildIndex(int parentIndex) { return 2 * parentIndex + 2; }
@@ -26,15 +26,15 @@ public class MinIntHeap {
         items[indexTwo] = temp;
     }
 
-    private void ensureCapactity() {
-        if (size == capactity) {
-            items = Arrays.copyOf(items, capactity * 2);
-            capactity *= 2;
+    private void ensureCapacity() {
+        if (size == capacity) {
+            items = Arrays.copyOf(items, capacity * 2);
+            capacity *= 2;
         }
     }
 
 
-    public int extractMin() {
+    int extractMin() {
         if (size == 0) throw new IllegalStateException();
         int item = items[0];        // grab the min
         items[0] = items[size - 1]; // copy to the bottom
@@ -44,21 +44,21 @@ public class MinIntHeap {
     }
 
     public void add(int item) {
-        ensureCapactity();
+        ensureCapacity();
         items[size] = item;          // put in last spot
         size++;
         heapifyUp();
     }
 
-    public void heapifyUp() {
+    void heapifyUp() {
         int index = size - 1;       // start at last element
-        while (hasParent(index) && parent(index) > items[index]) {  // walk up as long as there is a parent and it is bigger than you
+        while (hasParent(index) && parent(index) > items[index]) {  // walk up as long as there is a parent and it is bigger
             swap(parentIndex(index), index);
             index = parentIndex(index); // walk upwards to next node
         }
     }
 
-    public void heapifyDown() {
+    void heapifyDown() {
         int index = 0;              // starting at the top
         while (hasLeftChild(index)) {  // as long as I have children Note: Only need to check left because if no left, there is no right
 

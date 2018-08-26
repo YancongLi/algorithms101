@@ -3,10 +3,10 @@ package algorithms;
 import java.util.Arrays;
 
 public class MaxIntHeap {
-    private int capactity = 10;
+    private int capacity = 10;
     private int size = 0;
 
-    public int[] items = new int[capactity];
+    int[] items = new int[capacity];
 
     private int leftChildIndex(int parentIndex) { return 2 * parentIndex + 1; }
     private int rightChildIndex(int parentIndex) { return 2 * parentIndex + 2; }
@@ -20,7 +20,7 @@ public class MaxIntHeap {
     private int rightChild(int index) { return items[rightChildIndex(index)]; }
     private int parent(int index) { return items[parentIndex(index)]; }
 
-    public int extractMax() {
+    int extractMax() {
         if (size == 0) throw new IllegalStateException();
         int item = items[0];        // grab the max
         items[0] = items[size - 1]; // swap top and bottom
@@ -29,30 +29,30 @@ public class MaxIntHeap {
         return item;                // return max
     }
 
-    private void ensureCapactity() {
-        if (size == capactity) {
-            items = Arrays.copyOf(items, capactity * 2);
-            capactity *= 2;
+    private void ensureCapacity() {
+        if (size == capacity) {
+            items = Arrays.copyOf(items, capacity * 2);
+            capacity *= 2;
         }
     }
 
     public void insert(int item) {
-        ensureCapactity();
+        ensureCapacity();
         items[size] = item; // put in last spot
         size++;
         heapifyUp();
     }
 
-    public void heapifyUp() {
-        int index = size - 1;       // start at last element
+    void heapifyUp() {
+        int lastIndex = size - 1;       // start at last element
         // while my parents are less than me...
-        while (hasParent(index) && parent(index) < items[index]) {
-            swap(parentIndex(index), index);
-            index = parentIndex(index); // walk upwards to next node
+        while (hasParent(lastIndex) && parent(lastIndex) < items[lastIndex]) {
+            swap(parentIndex(lastIndex), lastIndex);
+            lastIndex = parentIndex(lastIndex); // walk upwards to next node
         }
     }
 
-    public void heapifyDown() {
+    void heapifyDown() {
         int index = 0; // start at the top
 
         // as long as I have children
@@ -60,24 +60,24 @@ public class MaxIntHeap {
         while (hasLeftChild(index)) {
 
             // take the larger of the two indexes
-            int smallerChildIndex = leftChildIndex(index);
+            int largerChildIndex = leftChildIndex(index);
             if (hasRightChild(index) && rightChild(index) > leftChild(index)) {
-                smallerChildIndex = rightChildIndex(index);
+                largerChildIndex = rightChildIndex(index);
             }
 
             // now compare
 
-            // if I am smaller than the items of my two children...
+            // if I am bigger than the items of my two children...
             // then everything is good. I am sorted.
-            if(items[index] > items[smallerChildIndex]) {
+            if(items[index] > items[largerChildIndex]) {
                 break;
             } else {
                 //  we are still not in order - swap
-                swap(index, smallerChildIndex);
+                swap(index, largerChildIndex);
             }
 
-            // then move down to smaller child
-            index = smallerChildIndex;
+            // then move down to larger child
+            index = largerChildIndex;
         }
     }
 
