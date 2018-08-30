@@ -1,64 +1,65 @@
 package algorithms;
 
-public class MergeSort {
+class MergeSort {
+
+    static void printArray(int arr[]) {
+        int n = arr.length;
+        for (int i = 0; i < n; ++i) {
+            System.out.print(arr[i] + " ");
+        }
+        System.out.println();
+    }
 
     // Main function that sorts arr[l..r] using
     // merge()
-    public void sort(int arr[], int l, int r)
-    {
-        System.out.println("splitting l r: " + l + " " + r);
-        if (l < r)
-        {
+    void sort(int arr[], int leftPointer, int rightPointer) {
+        System.out.println("splitting l r: " + leftPointer + " " + rightPointer);
+        if (leftPointer < rightPointer) {
             // Find the middle point
-            int m = (l+r)/2;
+            int middlePointer = (leftPointer + rightPointer) / 2;
 
-            // Sort first and second halves
-            sort(arr, l, m);
-            sort(arr , m+1, r);
+            // Sort first and second halves -> recursive call
+            sort(arr, leftPointer, middlePointer);
+            sort(arr, middlePointer + 1, rightPointer);
 
             // Merge the sorted halves
-            merge(arr, l, m, r);
+            merge(arr, leftPointer, middlePointer, rightPointer);
         }
     }
 
-    // Merges two subarrays of arr[].
-    // First subarray is arr[l..m]
-    // Second subarray is arr[m+1..r]
-    public void merge(int arr[], int l, int m, int r)
-    {
-        System.out.println("merge l m r: " + l + " " + m + " " + r);
+    // Merges two subArrays of arr[].
+    // First subArray is arr[l..m]
+    // Second subArray is arr[m+1..r]
+    private void merge(int arr[], int leftPointer, int middlePointer, int rightPointer) {
+        System.out.println("merge l m r: " + leftPointer + " " + middlePointer + " " + rightPointer);
 
-        // Find sizes of two subarrays to be merged
-        int n1 = m - l + 1;
-        int n2 = r - m;
+        // Find sizes of two subArrays to be merged
+        int size1 = middlePointer - leftPointer + 1;
+        int size2 = rightPointer - middlePointer;
 
         /* Create temp arrays */
-        int L[] = new int [n1];
-        int R[] = new int [n2];
+        int L[] = new int[size1];
+        int R[] = new int[size2];
 
         /* Copy data to temp arrays */
-        for (int i=0; i<n1; ++i)
-            L[i] = arr[l + i];
-        for (int j=0; j<n2; ++j)
-            R[j] = arr[m + 1+ j];
-
+        for (int i = 0; i < size1; ++i) {
+            L[i] = arr[leftPointer + i];
+        }
+        for (int j = 0; j < size2; ++j) {
+            R[j] = arr[middlePointer + 1 + j];
+        }
 
         /* Merge the temp arrays */
-
-        // Initial indexes of first and second subarrays
+        // Initial indexes of first and second subArrays
         int i = 0, j = 0;
 
-        // Initial index of merged subarry array
-        int k = l;
-        while (i < n1 && j < n2)
-        {
-            if (L[i] <= R[j])
-            {
+        // Initial index of merged subArray array
+        int k = leftPointer;
+        while (i < size1 && j < size2) {
+            if (L[i] <= R[j]) {
                 arr[k] = L[i];
                 i++;
-            }
-            else
-            {
+            } else {
                 arr[k] = R[j];
                 j++;
             }
@@ -66,16 +67,14 @@ public class MergeSort {
         }
 
         /* Copy remaining elements of L[] if any */
-        while (i < n1)
-        {
+        while (i < size1) {
             arr[k] = L[i];
             i++;
             k++;
         }
 
         /* Copy remaining elements of R[] if any */
-        while (j < n2)
-        {
+        while (j < size2) {
             arr[k] = R[j];
             j++;
             k++;
@@ -83,14 +82,6 @@ public class MergeSort {
 
         System.out.println("After merge");
         printArray(arr);
-    }
-
-    static void printArray(int arr[])
-    {
-        int n = arr.length;
-        for (int i=0; i<n; ++i)
-            System.out.print(arr[i] + " ");
-        System.out.println();
     }
 
     // Pros: Pretty efficient sorting algorithm - O(n log(n))
