@@ -5,13 +5,14 @@ import java.util.*;
 class Graph
 {
     private int V;                     // No. of vertices
-    private LinkedList<Integer> adj[]; // Adjacency Lists
+    private LinkedList adj[]; // Adjacency Lists
 
     Graph(int v) {
         V = v;
         adj = new LinkedList[v];
-        for (int i = 0; i < v; ++i)
+        for (int i = 0; i < v; i++) {
             adj[i] = new LinkedList();
+        }
     }
 
     void addEdge(int v, int w) {
@@ -35,8 +36,6 @@ class Graph
             // Dequeue a vertex from queue and print it
             s = queue.poll();
             System.out.println("De-queueing " + s);
-//            System.out.print(s + " ");
-
             // Get all adjacent vertices of the de-queued vertex s
             // If a adjacent has not been visited, then mark it
             // visited and enqueue it
