@@ -85,6 +85,9 @@ public class ArraysAndStringsTest {
         Assert.assertTrue(oneAwayDetector.oneAway("peter","peeer"));
         Assert.assertTrue(oneAwayDetector.oneAway("geaks","geeks"));
         Assert.assertTrue(oneAwayDetector.oneAway("petter","peter"));
+        Assert.assertTrue(oneAwayDetector.oneAway("peter","peterr"));
+        Assert.assertFalse(oneAwayDetector.oneAway("peter","peterrrrr"));
+
     }
 
     @Test
