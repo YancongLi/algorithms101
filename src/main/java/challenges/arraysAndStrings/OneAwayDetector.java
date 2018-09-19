@@ -51,8 +51,8 @@ public class OneAwayDetector {
                 if (foundDifference) {
                     return false;
                 }
+                foundDifference = true;
             }
-            foundDifference = true;
         }
         return true;
     }
