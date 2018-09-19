@@ -43,8 +43,12 @@ public class ArraysAndStringsTest {
     @Test
     public void PermutationOfTheOther() {
         // Challenge: Given two strings, check if one is a permutation of the other
+        // A Permutation of a string is another string that contains same characters, only the order of characters can be different.
         Assert.assertTrue(permDetector.isPermutation("abc", "cba"));
+        Assert.assertTrue(permDetector.isPermutation("abcd", "dcba"));
         Assert.assertFalse(permDetector.isPermutation("abc", "xyz"));
+        Assert.assertFalse(permDetector.isPermutation("abc", "cbba"));
+
     }
 
     @Test
