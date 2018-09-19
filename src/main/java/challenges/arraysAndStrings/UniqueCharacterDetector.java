@@ -6,21 +6,11 @@ public class UniqueCharacterDetector {
     public boolean isUnique(String str) {
         char[] charArray = str.toCharArray();
         HashSet<Character> charSet = new HashSet<>();
-        for (Character c: charArray) {
+        for (Character c : charArray) {
             charSet.add(c);
         }
         return (charSet.size() == charArray.length);
     }
-
-
-
-
-
-
-
-
-
-
 
 
     // There are lots of ways we could solve this:
