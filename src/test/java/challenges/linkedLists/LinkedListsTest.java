@@ -22,12 +22,17 @@ public class LinkedListsTest {
 
         LinkedListRemoveDuplicates linkedList = new LinkedListRemoveDuplicates();
         linkedList.addBack(1);
+        linkedList.addBack(1);
         linkedList.addBack(2);
-        linkedList.addBack(1); // duplication
+        linkedList.addBack(2);
+        linkedList.addBack(3);
+        linkedList.addBack(1);
+        linkedList.addBack(3);
 
         linkedList.removeDuplicates();
 
-        Assert.assertEquals(2, linkedList.size());
+        Assert.assertEquals(3, linkedList.size());
+        linkedList.printList();
     }
 
     @Test

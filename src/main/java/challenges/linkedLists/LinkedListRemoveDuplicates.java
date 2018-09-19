@@ -52,6 +52,14 @@ public class LinkedListRemoveDuplicates {
         }
     }
 
+    public void printList() {
+        while (head != null) {
+            System.out.print(head.data + " ");
+            head = head.next;
+        }
+    }
+
+
     public int size() {
 
         if (head == null) {
