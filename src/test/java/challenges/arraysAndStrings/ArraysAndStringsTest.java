@@ -32,11 +32,12 @@ public class ArraysAndStringsTest {
 
     @Test
     public void UniqueCharacters() {
-        // Challenge: Given a string, see if you can detect whether it contains only
-        // unique chars
+        // Challenge: Given a string, see if you can detect whether it contains only unique chars
         Assert.assertTrue(charDetector.isUnique("ab"));
         Assert.assertFalse(charDetector.isUnique("aa"));
         Assert.assertTrue(charDetector.isUnique("abcdefghijklmnopqrstuvwxyz"));
+        Assert.assertTrue(charDetector.isUnique("abcd10jk"));
+        Assert.assertFalse(charDetector.isUnique("hutg9mnd!nk9"));
     }
 
     @Test
